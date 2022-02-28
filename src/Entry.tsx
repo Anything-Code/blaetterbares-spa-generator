@@ -25,7 +25,7 @@ export default function Entry({ entry, skeleton, cardWidth, cardHeight }: Props)
                     src={entry.link[1]['@_href']}
                     alt="Featured image"
                 />
-                <H3>{entry.title}</H3>
+                <H3 style={{ margin: 0 }}>{entry.title}</H3>
             </Card>
         </a>
     ) : (
