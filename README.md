@@ -18,7 +18,7 @@
 
 `REACT_APP_BLAETTERBARES_API_URL`
 
-<!-- `REACT_APP_BLAETTERBARES_FILTER_ID` -->
+`REACT_APP_BLAETTERBARES_FILTER_ID`
 
 The variables are easily configurable in the .env file.
 
