@@ -11,6 +11,7 @@ import './App.scss';
 const apiUrl =
     process.env.REACT_APP_BLAETTERBARES_API_URL ||
     'https://rnz-publish.blaetterkatalog.de/frontend/supplementcatalogfeed.do?grp=1536&imgType=normal';
+const filterId = process.env.REACT_APP_BLAETTERBARES_FILTER_ID || null;
 
 export default function App() {
     const windowSize = useWindowSize();
@@ -65,12 +66,23 @@ export default function App() {
             setData(data);
         })();
     }, []);
+    const hasFilterId = (issue: Blätterkatalog.Issue | Array<Blätterkatalog.Issue>) => {
+        if (filterId == null) {
+            return true;
+        }
+        if (Array.isArray(issue)) {
+            return issue.includes({ id: filterId });
+        }
+        return issue.id === filterId;
+    };
 
     return (
         <Fragment>
             <div ref={container} className={containerClass}>
                 {data != null
-                    ? data.map((item: Blätterkatalog.Entry, key: number) => <Entry key={key} entry={item} />)
+                    ? data
+                          .filter((item) => hasFilterId(item.Issues.Issue))
+                          .map((item: Blätterkatalog.Entry, key: number) => <Entry key={key} entry={item} />)
                     : Range(0, 16).map((item: number, key: number) => <Entry key={key} skeleton />)}
             </div>
         </Fragment>

@@ -12,7 +12,10 @@ export namespace Blätterkatalog {
     }
 
     export interface Entry {
-        Issues: Array<Issue>;
+        Issues: {
+            '@_xmlns': string;
+            Issue: Array<Issue> | Issue;
+        };
         author: {
             name: string;
         };
