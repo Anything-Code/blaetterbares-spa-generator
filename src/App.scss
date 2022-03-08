@@ -1,0 +1,69 @@
+/* @import url('~@blueprintjs/icons/lib/css/blueprint-icons.css'); */
+@import url("~@blueprintjs/core/lib/css/blueprint.css");
+
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -1rem -0.5rem;
+    overflow: hidden;
+    .card {
+        width: calc(25% - 1rem);
+    }
+}
+.container.xl .card {
+    width: calc(20% - 1rem);
+    img {
+        height: 350px;
+    }
+}
+.container.l .card {
+    width: calc(25% - 1rem);
+}
+.container.m .card {
+    width: calc(33.3% - 1rem);
+}
+.container.s .card {
+    width: calc(50% - 1rem);
+    img {
+        height: 350px;
+    }
+}
+.container.xs .card {
+    width: calc(100% - 1rem);
+    img {
+        height: 400px;
+    }
+}
+.bp3-card {
+    height: 100%;
+}
+.card {
+    margin: 1rem 0.5rem;
+    display: block;
+}
+.card img {
+    width: 100%;
+    height: 300px;
+    object-fit: none;
+}
+.card .heading {
+    height: 2.7rem;
+}
+.card div.h3 {
+    margin: 0;
+    display: block;
+    width: 80%;
+    font-size: 22px;
+    margin: 1.1rem 0 0 1rem;
+}
+.card h3 {
+    padding: 1rem;
+    display: block;
+    width: 100%;
+}

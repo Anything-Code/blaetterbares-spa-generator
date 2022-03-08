@@ -1,12 +1,12 @@
-import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import axios from 'axios';
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
 import { Blätterkatalog } from './types';
 import { sleep, usePromise } from './util';
 import { useWindowSize } from './hooks/useWindowSize';
 import { Range } from 'immutable';
 import Entry from './Entry';
-import './App.css';
+import './App.scss';
 
 const apiUrl =
     process.env.REACT_APP_BLAETTERBARES_API_URL ||
@@ -21,31 +21,23 @@ export default function App() {
             return container.current.getBoundingClientRect().width;
         }
     }, [windowSize]);
-    const cardHeight = useMemo(() => {
-        const firstCard = document.querySelector('.card');
-        if (firstCard != null) {
-            const width = firstCard.getBoundingClientRect().width;
-            return `calc(${width}px * 1.3)`;
-        }
-        return 'calc(300px * 1.3)';
-    }, [windowSize]);
-    const cardWidth = useMemo(() => {
+    const containerClass = useMemo(() => {
         if (containerWidth == null) {
-            return null;
+            return 'container';
         }
         if (containerWidth < 1200) {
             if (containerWidth < 920) {
                 if (containerWidth < 640) {
                     if (containerWidth < 480) {
-                        return 'calc(100% - 1rem)';
+                        return 'container xs';
                     }
-                    return 'calc(50% - 1rem)';
+                    return 'container s';
                 }
-                return 'calc(33.3% - 1rem)';
+                return 'container m';
             }
-            return 'calc(25% - 1rem)';
+            return 'container l';
         }
-        return 'calc(20% - 1rem)';
+        return 'container xl';
     }, [containerWidth]);
     const [data, setData] = useState<Blätterkatalog.Maybe<Array<Blätterkatalog.Entry>>>(null);
     const fetchXmlData = useCallback(async (url: string) => {
@@ -76,14 +68,10 @@ export default function App() {
 
     return (
         <Fragment>
-            <div ref={container} className="container">
+            <div ref={container} className={containerClass}>
                 {data != null
-                    ? data.map((item: Blätterkatalog.Entry, key: number) => (
-                          <Entry key={key} entry={item} cardWidth={cardWidth} cardHeight={cardHeight} />
-                      ))
-                    : Range(0, 16).map((item: number, key: number) => (
-                          <Entry key={key} skeleton cardWidth={cardWidth} cardHeight={cardHeight} />
-                      ))}
+                    ? data.map((item: Blätterkatalog.Entry, key: number) => <Entry key={key} entry={item} />)
+                    : Range(0, 16).map((item: number, key: number) => <Entry key={key} skeleton />)}
             </div>
         </Fragment>
     );
