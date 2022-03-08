@@ -38,4 +38,4 @@ The variables are easily configurable in the .env file.
 ## Features
 
 - Skeleton loading placeholders
-- Responsive styling depending on root-container width
+- Responsive styling depending on root-container width (fixed classes variable styling)
