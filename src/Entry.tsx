@@ -22,7 +22,7 @@ export default function Entry({ entry, skeleton }: Props) {
             <Card style={{ padding: 0 }}>
                 <div className="image bp3-skeleton" />
                 <div className="heading">
-                    <div className="h3 bp3-skeleton">123</div>
+                    <div className="h3 bp3-skeleton">&#8203;</div>
                 </div>
             </Card>
         </a>

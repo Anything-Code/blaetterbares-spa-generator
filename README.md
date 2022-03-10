@@ -20,6 +20,8 @@
 
 `REACT_APP_BLAETTERBARES_FILTER_ID`
 
+`REACT_APP_NO_OF_SKELETONS`
+
 The variables are easily configurable in the .env file.
 
 ## Output
